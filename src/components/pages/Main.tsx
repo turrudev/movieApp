@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import withDocumentTitle from './withDocumentTitle';
 import Home from "./main/Home";
@@ -8,9 +8,13 @@ import Grid from "../../utils/Grid";
 import {ThemeContext} from "../../providers/ThemeProvider";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import {AppProps} from "../../App";
+import {useDispatch} from "react-redux";
+import SettingsCreator from "../../state/creators/settings.creator";
 
-const Main = () => {
-    const {theme} = useContext(ThemeContext),
+const Main = ({settings}: AppProps) => {
+    const dispatch = useDispatch(),
+        {theme} = useContext(ThemeContext),
         styles = StyleSheet.create({
             main: {
                 ...Grid.define("max-content auto", "auto"),
@@ -20,6 +24,14 @@ const Main = () => {
             },
             pageContent: Grid.setRowCol(2, 1),
         });
+
+    useEffect(() => {
+        const loadLocalSettings = (): void => {
+            dispatch(SettingsCreator.restoreSettings(settings));
+        };
+
+        loadLocalSettings();
+    }, [settings, dispatch]);
 
     // react-router-dom >= 6.0.0 does not allow HOC call inside the Route. It must be defined sadly outside.
     const HomeWithDocumentTitle = withDocumentTitle(Home, useContext(TranslationsContext).getMessage('welcomePageTitle'));

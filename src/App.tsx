@@ -1,33 +1,25 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {ThemeProvider} from "./providers/ThemeProvider";
 import {TranslationsProvider} from "./providers/TranslationProvider";
 import Main from "./components/pages/Main";
-import {useDispatch} from "react-redux";
-import SettingsCreator from "./state/creators/settings.creator";
-import {SettingsState} from "./state/reducers/initialState";
+import {Provider} from "react-redux";
+import InitialState, {SettingsState} from "./state/reducers/initialState";
+import store from "./state/store/store";
 
-interface AppProps {
+export interface AppProps {
     settings: SettingsState;
 }
 
-const App = ({settings}: AppProps) => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        const loadLocalSettings = (): void => {
-            dispatch(SettingsCreator.restoreSettings(settings));
-        };
-
-        loadLocalSettings();
-    }, [settings, dispatch]);
-
+const App = ({settings = InitialState.settings}: AppProps) => {
     return (
         <React.StrictMode>
-            <TranslationsProvider>
-                <ThemeProvider>
-                    <Main/>
-                </ThemeProvider>
-            </TranslationsProvider>
+            <Provider store={store}>
+                <TranslationsProvider>
+                    <ThemeProvider>
+                        <Main settings={settings || InitialState.settings}/>
+                    </ThemeProvider>
+                </TranslationsProvider>
+            </Provider>
         </React.StrictMode>
     );
 };
