@@ -2,12 +2,13 @@ import React from 'react';
 import {render} from '@testing-library/react';
 import ReferenceLanguageFile from "../../../_locales/en.json";
 import App from '../../../App';
+import InitialState from "../../../state/reducers/initialState";
 
 const expectedDocumentTitle: string = ReferenceLanguageFile.welcomePageTitle;
 
 describe('Main Page Component', () => {
     beforeEach(() => {
-        render(<App/>);
+        render(<App settings={InitialState.settings}/>);
     });
 
     test('renders without crashing', () => {

@@ -1,4 +1,5 @@
 {
   "appTitle": "Frontend Starter Template",
-  "welcomePageTitle": "Welcome!"
+  "welcomePageTitle": "Welcome!",
+  "increaseCounter": "Increase"
 }
