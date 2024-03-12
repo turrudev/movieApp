@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from 'react';
+import React, {createContext, useState} from 'react';
 
 interface Locale {
     [key: string]: string;
@@ -33,9 +33,6 @@ const TranslationsContext = createContext<TranslationsContextType>({
 
 const TranslationsProvider: React.FC<Props> = ({children}) => {
     const [currentLocale, setCurrentLocale] = useState(DEFAULT_LOCALE);
-
-    useEffect(() => {
-    }, []);
 
     const changeLocale = (locale: string) => {
         setCurrentLocale(locale);

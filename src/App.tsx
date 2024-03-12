@@ -16,7 +16,7 @@ const App = ({settings = InitialState.settings}: AppProps) => {
             <Provider store={store}>
                 <TranslationsProvider>
                     <ThemeProvider>
-                        <Main settings={settings || InitialState.settings}/>
+                        <Main settings={settings}/>
                     </ThemeProvider>
                 </TranslationsProvider>
             </Provider>

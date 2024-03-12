@@ -6,7 +6,7 @@ import {Middleware} from "redux";
 import {rootSaga} from "../sagas/root.saga";
 
 const sagaMiddleware = createSagaMiddleware(),
-    middlewares: Middleware[] = [logMiddleware]
+    middlewares: Middleware[] = [logMiddleware];
 
 const store = configureStore({
     reducer: rootReducer,

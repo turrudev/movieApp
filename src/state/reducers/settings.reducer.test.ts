@@ -1,7 +1,6 @@
 import settingsReducer, {SettingsActionType} from "./settings.reducer";
 import SettingsActions from "../actions/settings.actions";
 
-
 const tests = {
     restoreSettings: {
         description: 'should handle RESTORE_SETTINGS action',

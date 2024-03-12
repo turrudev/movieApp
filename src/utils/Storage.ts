@@ -4,7 +4,7 @@ const _settingsKey: string = "__SETTINGS__";
 
 /*
     TS does not support definitions with static methods yet...
-    One way to keep the hole thing static would be to replace the _storage object
+    One way to keep the whole thing static would be to replace the _storage object
     directly with an object that implements the localStorage class.
     Otherwise, inverse dependency injection on start creating a new object is always an option.
  */
