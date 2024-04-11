@@ -16,14 +16,19 @@ const Main = () => {
                 color: theme.app.text,
                 minHeight: "100vh"
             },
+            title: {
+                textAlign: "center"
+            },
             pageContent: Grid.setRowCol(2, 1),
-        });
+        }),
+        pageTitle: string = useContext(TranslationsContext).getMessage('movieSearchPage');
 
     // react-router-dom >= 6.0.0 does not allow HOC call inside the Route. It must be defined sadly outside.
-    const MovieSearchWithDocumentTitle = withDocumentTitle(MovieSearch, useContext(TranslationsContext).getMessage('movieSearchPage'));
+    const MovieSearchWithDocumentTitle = withDocumentTitle(MovieSearch, pageTitle);
 
     return (
         <div className={css(styles.main)}>
+            <h2 className={css(styles.title)}>{pageTitle}</h2>
             <div className={css(styles.pageContent)}>
                 <Router>
                     <Routes>

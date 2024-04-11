@@ -3,12 +3,24 @@
     "app": {
       "background": "#282c34",
       "text": "white"
+    },
+    "searchForm": {
+      "inputBorder": "#CCC",
+      "buttonBackground": "#007bff",
+      "buttonBackgroundHover": "#0056b3",
+      "buttonText": "#fff"
     }
   },
   "dark": {
     "app": {
       "background": "#282c34",
       "text": "white"
+    },
+    "searchForm": {
+      "inputBorder": "#CCC",
+      "buttonBackground": "#007bff",
+      "buttonBackgroundHover": "#0056b3",
+      "buttonText": "#fff"
     }
   }
 }
