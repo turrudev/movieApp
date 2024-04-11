@@ -14,7 +14,7 @@ const Main = () => {
                 ...Grid.define("max-content auto", "auto"),
                 backgroundColor: theme.app.background,
                 color: theme.app.text,
-                height: "100vh"
+                minHeight: "100vh"
             },
             pageContent: Grid.setRowCol(2, 1),
         });
