@@ -15,7 +15,9 @@ const SearchMoviesForm: React.FC<Props> = ({onSearch}) => {
         translations = useContext(TranslationsContext),
         styles = StyleSheet.create({
             form: {
-                ...Grid.define("max-content max-content", "max-content"),
+                ...Grid.define("max-content max-content", "auto"),
+                ...Grid.setRowCol(1, 1),
+                justifyContent: "center",
                 gridRowGap: 10
             },
             labelContainer: Grid.setRowCol(1, 1),

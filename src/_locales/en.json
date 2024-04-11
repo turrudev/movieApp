@@ -4,5 +4,6 @@
   "enterCharactersWarning": "Please enter at least 3 non-whitespace characters",
   "searchMoviesByTitle": "Search Movies by Title:",
   "search": "Search",
-  "submitSearch": "Submit search"
+  "submitSearch": "Submit search",
+  "openInIMDB": "Open in IMDB"
 }

@@ -9,6 +9,11 @@
       "buttonBackground": "#007bff",
       "buttonBackgroundHover": "#0056b3",
       "buttonText": "#fff"
+    },
+    "movie": {
+      "background": "#404040",
+      "backgroundHover": "#555555",
+      "text": "#fff"
     }
   },
   "dark": {
@@ -21,6 +26,11 @@
       "buttonBackground": "#007bff",
       "buttonBackgroundHover": "#0056b3",
       "buttonText": "#fff"
+    },
+    "movie": {
+      "background": "#404040",
+      "backgroundHover": "#555555",
+      "text": "#fff"
     }
   }
 }

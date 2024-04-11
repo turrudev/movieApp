@@ -11,12 +11,15 @@ const Main = () => {
     const {theme} = useContext(ThemeContext),
         styles = StyleSheet.create({
             main: {
-                ...Grid.define("max-content auto", "auto"),
+                ...Grid.define("max-content auto", "1fr"),
                 backgroundColor: theme.app.background,
                 color: theme.app.text,
+                padding: 10,
                 minHeight: "100vh"
             },
             title: {
+                ...Grid.setRowCol(1, 1),
+                display: "grid",
                 textAlign: "center"
             },
             pageContent: Grid.setRowCol(2, 1),
