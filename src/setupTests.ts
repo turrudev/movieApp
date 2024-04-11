@@ -6,6 +6,10 @@ import '@testing-library/jest-dom';
 import "../src/utils/MatchMedia.mock";
 import {StyleSheetTestUtils} from "aphrodite";
 
+jest.mock('./app.worker', () => {
+    return require('./utils/Worker.mock').default;
+});
+
 beforeEach(() => {
     StyleSheetTestUtils.suppressStyleInjection();
 });

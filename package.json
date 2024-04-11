@@ -26,10 +26,10 @@
     "yarn": "^1.22.21"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test-dev": "react-scripts test",
-    "test": "react-scripts test --watchAll=false",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --watchAll=false",
+    "test-dev": "react-app-rewired test",
     "eject": "react-scripts eject",
     "prepare": "husky"
   },
@@ -52,7 +52,10 @@
     ]
   },
   "devDependencies": {
+    "react-app-rewired": "2.1.x",
+    "worker-loader": "3.0.x",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "husky": "^9.0.11"
-  }
+  },
+  "config-overrides-path": "react-app-rewired.config.js"
 }

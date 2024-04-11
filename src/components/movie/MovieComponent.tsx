@@ -8,7 +8,7 @@ import {TranslationsContext} from "../../providers/TranslationProvider";
 const IMDB_URL: string = "https://www.imdb.com/title";
 
 interface Props {
-    movie: Movie
+    movie: Movie;
 }
 
 const MovieComponent = ({movie}: Props) => {
