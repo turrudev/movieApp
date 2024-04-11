@@ -2,13 +2,12 @@ import React from 'react';
 import {render} from '@testing-library/react';
 import ReferenceLanguageFile from "../../../_locales/en.json";
 import App from '../../../App';
-import InitialState from "../../../state/reducers/initialState";
 
-const expectedDocumentTitle: string = ReferenceLanguageFile.welcomePageTitle;
+const expectedDocumentTitle: string = ReferenceLanguageFile.movieSearchPage;
 
 describe('Main Page Component', () => {
     beforeEach(() => {
-        render(<App settings={InitialState.settings}/>);
+        render(<App/>);
     });
 
     test('renders without crashing', () => {

@@ -1,6 +1,12 @@
-import {SettingsState} from "../state/reducers/initialState";
+import {AppState} from "../state/reducers/initialState";
 
-const _settingsKey: string = "__SETTINGS__";
+interface MyLocalStorage {
+    getItem(key: string): string | null;
+
+    setItem(key: string, value: string): void;
+}
+
+const _stateKey: string = "__APP_STATE__";
 
 /*
     TS does not support definitions with static methods yet...
@@ -9,14 +15,14 @@ const _settingsKey: string = "__SETTINGS__";
     Otherwise, inverse dependency injection on start creating a new object is always an option.
  */
 export default class Storage {
-    private static _storage: any = localStorage;
+    private static _storage: MyLocalStorage = localStorage;
 
-    static saveSettings(settings: SettingsState): void {
-        Storage.write(_settingsKey, settings);
+    static saveState(state: AppState): void {
+        Storage.write(_stateKey, state);
     }
 
-    static getSettings(): SettingsState | null {
-        return Storage.read(_settingsKey);
+    static getState(): AppState | null {
+        return Storage.read(_stateKey);
     }
 
     static read(key: string): any | null {

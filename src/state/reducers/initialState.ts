@@ -1,15 +1,9 @@
-export interface SettingsState {
-    counter: number;
-}
+export type AppState = {};
 
 export interface InitialStateProps {
-    settings: SettingsState;
+
 }
 
-const initialState: InitialStateProps = {
-    settings: {
-        counter: 0
-    }
-};
+const initialState: InitialStateProps = {};
 
 export default initialState;

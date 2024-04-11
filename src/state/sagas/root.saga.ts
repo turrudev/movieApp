@@ -1,8 +1,8 @@
 import {all} from 'redux-saga/effects';
-import {settingsSaga} from "./settings.saga";
+import {appSaga} from "./appSaga";
 
 export function* rootSaga() {
     yield all([
-        settingsSaga()
+        appSaga()
     ]);
 }

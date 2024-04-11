@@ -1,11 +1,10 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import App from './App';
-import InitialState from "./state/reducers/initialState";
 
 describe('App Component', () => {
     beforeEach(() => {
-        render(<App settings={InitialState.settings}/>);
+        render(<App/>);
     });
 
     test('renders without crashing', () => {

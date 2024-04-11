@@ -1,8 +1,3 @@
-import {combineReducers} from 'redux';
-import SettingsReducer from "./settings.reducer";
+import AppReducer from "./app.reducer";
 
-const rootReducer = combineReducers({
-    settings: SettingsReducer,
-});
-
-export default rootReducer;
+export default AppReducer;
