@@ -2,9 +2,23 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Prerequisites
+## Prerequisites
 
-Make sure you have Node.js installed, along with npm or yarn for package management.
+Before you begin, ensure that you have Node.js installed on your system, along with either npm or yarn for package management.
+
+## Installation
+
+To install the dependencies required for this project, you can use either yarn or npm. Run one of the following commands:
+
+- If you prefer yarn, run:
+  ```bash
+  yarn start
+  ```
+
+- If you prefer npm, run:
+  ```bash
+  npm start
+  ```
 
 # Environment Configuration
 
