@@ -1,14 +1,14 @@
 import MovieService from "../MovieService";
 import Movie from "../../models/movie/Movie";
 
-const OMDB_API_KEY: string = process.env.REACT_APP_MOVIE_SERVICE_API_KEY || "";
 
 export default class RestMovieService implements MovieService<Movie> {
     constructor(private readonly serverUrl: string) {
     }
 
     async searchMoviesByTitle(title: string): Promise<Movie[]> {
-        const url = `${this.serverUrl}/?apikey=${OMDB_API_KEY}&s=${encodeURIComponent(title)}&type=movie`;
+        const OMDB_API_KEY: string = process.env.REACT_APP_MOVIE_SERVICE_API_KEY || "",
+            url = `${this.serverUrl}/?apikey=${OMDB_API_KEY}&s=${encodeURIComponent(title)}&type=movie`;
 
         try {
             const response = await fetch(url);
