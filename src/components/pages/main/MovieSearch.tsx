@@ -13,7 +13,7 @@ interface Props<T> {
 }
 
 const MovieSearch: React.FC<Props<Movie>> = ({service}) => {
-    const [movies, setMovies] = useState({}),
+    const [movies, setMovies] = useState(null),
         [myWorkerInstance, setMyWorkerInstance] = useState<Worker | null>(null),
         styles = StyleSheet.create({
             container: {

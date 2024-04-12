@@ -5,5 +5,6 @@
   "searchMoviesByTitle": "Search Movies by Title:",
   "search": "Search",
   "submitSearch": "Submit search",
-  "openInIMDB": "Open in IMDB"
+  "openInIMDB": "Open in IMDB",
+  "noMoviesFound": "We did not find any movies matching your title..."
 }
