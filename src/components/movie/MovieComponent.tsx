@@ -1,11 +1,10 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import MoviePoster from "../moviePoster/MoviePoster";
 import Movie from "../../models/movie/Movie";
-import {StyleSheet, css} from "aphrodite";
+import {css, StyleSheet} from "aphrodite";
 import {ThemeContext} from "../../providers/ThemeProvider";
 import {TranslationsContext} from "../../providers/TranslationProvider";
-
-const IMDB_URL: string = "https://www.imdb.com/title";
+import getMovieImdbLink from "../../utils/getIMDBMovieLink";
 
 interface Props {
     movie: Movie;
@@ -48,7 +47,7 @@ const MovieComponent = ({movie, delay}: Props) => {
     }, delay);
 
     const openInIMDB = (): void => {
-        window.open(`${IMDB_URL}/${movie.id}`, "_blank");
+        window.open(getMovieImdbLink(movie.id), "_blank");
     };
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
