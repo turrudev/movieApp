@@ -27,12 +27,12 @@ const Loader = () => {
                 animationName: 'spin',
                 animationDuration: '1s',
                 animationTimingFunction: 'linear',
-                animationIterationCount: 'infinite',
+                animationIterationCount: 'infinite'
             },
             message: {
-                marginTop: '20px',
-                fontSize: '20px',
-                fontWeight: 'bold',
+                marginTop: 20,
+                fontSize: '0.7rem',
+                fontWeight: 'bold'
             },
         });
 

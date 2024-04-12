@@ -34,7 +34,7 @@ const SearchMoviesForm: React.FC<Props> = ({onSearch}) => {
                 ...Grid.setRowCol(1, 1),
                 padding: 10,
                 borderRadius: 4,
-                fontSize: 16,
+                fontSize: "0.6rem",
                 minWidth: 300,
                 border: `1px solid ${theme.searchForm.inputBorder}`,
                 maxWidth: "80wh",
@@ -43,7 +43,7 @@ const SearchMoviesForm: React.FC<Props> = ({onSearch}) => {
             button: {
                 ...Grid.setRowCol(1, 2),
                 borderRadius: 4,
-                fontSize: 16,
+                fontSize: "0.7rem",
                 background: theme.searchForm.buttonBackground,
                 color: theme.searchForm.buttonText,
                 border: 'none',
