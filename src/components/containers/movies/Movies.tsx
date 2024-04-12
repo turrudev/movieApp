@@ -15,7 +15,7 @@ const Movies = ({movies}: Props) => {
             container: {
                 ...Grid.setRowCol(2, 1),
                 gridGap: 62,
-                padding: 23,
+                padding: 15,
                 gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
                 display: "grid"
             }
