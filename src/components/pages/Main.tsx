@@ -6,8 +6,13 @@ import {ThemeContext} from "../../providers/ThemeProvider";
 import withDocumentTitle from "./withDocumentTitle";
 import MovieSearch from "./main/MovieSearch";
 import {TranslationsContext} from "../../providers/TranslationProvider";
+import MovieService from "../../services/MovieService";
 
-const Main = () => {
+interface Props<T> {
+    service: MovieService<T>;
+}
+
+const Main: React.FC<Props<any>> = ({service}) => {
     const {theme} = useContext(ThemeContext),
         styles = StyleSheet.create({
             main: {
@@ -35,7 +40,7 @@ const Main = () => {
             <div className={css(styles.pageContent)}>
                 <Router>
                     <Routes>
-                        <Route path="*" element={<MovieSearchWithDocumentTitle/>}/>
+                        <Route path="*" element={<MovieSearchWithDocumentTitle service={service}/>}/>
                     </Routes>
                 </Router>
             </div>

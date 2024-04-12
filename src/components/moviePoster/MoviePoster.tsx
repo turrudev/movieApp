@@ -17,7 +17,7 @@ const MoviePoster = ({movieTitle, moviePoster}: Props) => {
     });
 
     return (
-        <img src={moviePoster || MovieFallbackImageSrc} alt={movieTitle} className={css(styles.container)}/>
+        <img src={(moviePoster && (moviePoster !== "N/A")) ? moviePoster : MovieFallbackImageSrc} alt={movieTitle} className={css(styles.container)}/>
     );
 };
 

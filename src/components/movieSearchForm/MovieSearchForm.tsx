@@ -58,6 +58,7 @@ const SearchMoviesForm: React.FC<Props> = ({onSearch}) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         if (query.trim().length >= 3) {
             onSearch(query.trim());
             setQuery("");

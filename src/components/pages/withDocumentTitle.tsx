@@ -1,7 +1,7 @@
 import React, {useEffect, ComponentType} from 'react';
 import Dom from "../../utils/DOM";
 
-const withDocumentTitle = <P extends object>(WrappedComponent: ComponentType<P>, title: string) => {
+const withDocumentTitle = <P extends object>(WrappedComponent: ComponentType<P>, title: string, ...args: any[]) => {
     const WithDocumentTitle: React.FC<P> = (props) => {
         useEffect(() => {
             Dom.setDocumentTitle(title);

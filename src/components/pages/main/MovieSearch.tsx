@@ -6,21 +6,13 @@ import Movies from "../../containers/movies/Movies";
 import Movie from "../../../models/movie/Movie";
 import AppWorker from "../../../app.worker";
 import WorkerMessages from "../../../config/workerMessages";
+import MovieService from "../../../services/MovieService";
 
-const dummyMovies: Movie[] = [
-    {title: 'Inception', year: '2010', id: '1', posterURL: ''},
-    {title: 'The Dark Knight', year: '2008', id: '2', posterURL: ''},
-    {title: 'Interstellar', year: '2014', id: '3', posterURL: ''},
-    {title: 'The Shawshank Redemption', year: '1994', id: '4', posterURL: ''},
-    {title: 'Fight Club', year: '1994', id: '5', posterURL: ''},
-    {title: 'Pulp Fiction', year: '1994', id: '6', posterURL: ''},
-    {title: 'The Matrix', year: '1999', id: '7', posterURL: ''},
-    {title: 'Forrest Gump', year: '1994', id: '8', posterURL: ''},
-    {title: 'The Lord of the Rings: The Fellowship of the Ring', year: '2001', id: '9', posterURL: ''},
-    {title: 'The Godfather', year: '1972', id: '10', posterURL: ''},
-];
+interface Props<T> {
+    service: MovieService<T>;
+}
 
-const MovieSearch = () => {
+const MovieSearch: React.FC<Props<Movie>> = ({service}) => {
     const [movies, setMovies] = useState({}),
         [myWorkerInstance, setMyWorkerInstance] = useState<Worker | null>(null),
         styles = StyleSheet.create({
@@ -36,9 +28,7 @@ const MovieSearch = () => {
 
         setMyWorkerInstance(worker);
 
-        return () => {
-            worker.terminate();
-        };
+        return () => worker.terminate();
     }, []);
 
     if (myWorkerInstance) {
@@ -49,8 +39,13 @@ const MovieSearch = () => {
         };
     }
 
-    const onSearch = () => {
-        myWorkerInstance!.postMessage({type: WorkerMessages.GROUP_MOVIES_BY_YEAR, payload: {movies: dummyMovies}});
+    const onSearch = (title: string) => {
+        service.searchMoviesByTitle(title).then((results) => {
+            myWorkerInstance!.postMessage({type: WorkerMessages.GROUP_MOVIES_BY_YEAR, payload: {movies: results}});
+        }).catch((error: any) => {
+            //TODO
+            console.log(error);
+        });
     };
 
     return (
