@@ -7,6 +7,7 @@ import Movie from "../../../models/movie/Movie";
 import AppWorker from "../../../app.worker";
 import WorkerMessages from "../../../config/workerMessages";
 import MovieService from "../../../services/MovieService";
+import Loader from "../../loader/Loader";
 
 interface Props<T> {
     service: MovieService<T>;
@@ -14,6 +15,7 @@ interface Props<T> {
 
 const MovieSearch: React.FC<Props<Movie>> = ({service}) => {
     const [movies, setMovies] = useState(null),
+        [requestOnGoing, setRequestOnGoing] = useState(false),
         [myWorkerInstance, setMyWorkerInstance] = useState<Worker | null>(null),
         styles = StyleSheet.create({
             container: {
@@ -31,6 +33,10 @@ const MovieSearch: React.FC<Props<Movie>> = ({service}) => {
         return () => worker.terminate();
     }, []);
 
+    useEffect(() => {
+        setRequestOnGoing(false);
+    }, [movies]);
+
     if (myWorkerInstance) {
         myWorkerInstance.onmessage = (event: any) => {
             const data = event.data;
@@ -40,6 +46,10 @@ const MovieSearch: React.FC<Props<Movie>> = ({service}) => {
     }
 
     const onSearch = (title: string) => {
+        if (requestOnGoing) return;
+
+        setRequestOnGoing(true);
+
         service.searchMoviesByTitle(title).then((results) => {
             myWorkerInstance!.postMessage({type: WorkerMessages.GROUP_MOVIES_BY_YEAR, payload: {movies: results}});
         }).catch((error: any) => {
@@ -51,7 +61,8 @@ const MovieSearch: React.FC<Props<Movie>> = ({service}) => {
     return (
         <div className={css(styles.container)}>
             <MovieSearchForm onSearch={onSearch}/>
-            <Movies movies={movies}/>
+            {!requestOnGoing && <Movies movies={movies}/>}
+            {requestOnGoing && <Loader/>}
         </div>
     );
 };

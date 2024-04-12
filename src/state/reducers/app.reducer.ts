@@ -4,7 +4,7 @@ import MovieCollection from "../../models/movieCollection/MovieCollection";
 
 export interface AppActionType {
     type: keyof typeof AppActions;
-    movies: MovieCollection
+    movies: MovieCollection;
 }
 
 const appReducer = (state: AppState = InitialState, action: AppActionType): AppState => {
