@@ -2,6 +2,22 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Prerequisites
+
+Make sure you have Node.js installed, along with npm or yarn for package management.
+
+# Environment Configuration
+
+Ensure that you have an environment file named `.env` located at the root of your project. The file should contain the following environment variables:
+
+These environment variables are used to configure the movie service API key and endpoint. Replace the placeholder values (\`your_api_key_here\` for the API key) with your actual
+API key and endpoint URL.
+
+```dotenv
+REACT_APP_MOVIE_SERVICE_API_KEY=your_api_key_here
+REACT_APP_MOVIE_SERVICE_ENDPOINT=https://mycoolserver.com
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
