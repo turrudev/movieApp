@@ -7,5 +7,6 @@
   "submitSearch": "Submit search",
   "openInIMDB": "Open in IMDB",
   "noMoviesFound": "We did not find any movies matching your title...",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "errorMessage": "There was an error, please try later"
 }

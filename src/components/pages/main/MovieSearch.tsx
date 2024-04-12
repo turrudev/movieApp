@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {css, StyleSheet} from "aphrodite";
 import Grid from "../../../utils/Grid";
 import MovieSearchForm from "../../movieSearchForm/MovieSearchForm";
@@ -8,15 +8,20 @@ import AppWorker from "../../../app.worker";
 import WorkerMessages from "../../../config/workerMessages";
 import MovieService from "../../../services/MovieService";
 import Loader from "../../loader/Loader";
+import MovieCollection from "../../../models/movieCollection/MovieCollection";
+import GenericFailMessage from "../../genericFailMessage/GenericFailMessage";
+import {TranslationsContext} from "../../../providers/TranslationProvider";
 
 interface Props<T> {
     service: MovieService<T>;
 }
 
 const MovieSearch: React.FC<Props<Movie>> = ({service}) => {
-    const [movies, setMovies] = useState(null),
+    const [movies, setMovies] = useState<null | MovieCollection>(null),
         [requestOnGoing, setRequestOnGoing] = useState(false),
+        [error, setError] = useState(""),
         [myWorkerInstance, setMyWorkerInstance] = useState<Worker | null>(null),
+        translations = useContext(TranslationsContext),
         styles = StyleSheet.create({
             container: {
                 ...Grid.define("max-content max-content", "auto"),
@@ -49,12 +54,14 @@ const MovieSearch: React.FC<Props<Movie>> = ({service}) => {
         if (requestOnGoing) return;
 
         setRequestOnGoing(true);
+        setError("");
 
         service.searchMoviesByTitle(title).then((results) => {
             myWorkerInstance!.postMessage({type: WorkerMessages.GROUP_MOVIES_BY_YEAR, payload: {movies: results}});
         }).catch((error: any) => {
-            //TODO
-            console.log(error);
+            setRequestOnGoing(false);
+            setMovies(null);
+            setError(error);
         });
     };
 
@@ -63,6 +70,7 @@ const MovieSearch: React.FC<Props<Movie>> = ({service}) => {
             <MovieSearchForm onSearch={onSearch}/>
             {!requestOnGoing && <Movies movies={movies}/>}
             {requestOnGoing && <Loader/>}
+            {!requestOnGoing && error && <GenericFailMessage message={`${translations.getMessage("errorMessage")} ${error}`}/>}
         </div>
     );
 };

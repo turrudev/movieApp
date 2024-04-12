@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import MovieCollection from "../../../models/movieCollection/MovieCollection";
 import MovieComponent from "../../movie/MovieComponent";
 import {css, StyleSheet} from "aphrodite";
 import Grid from "../../../utils/Grid";
-import NoMovieResults from "../../noMovieResults/NoMovieResults";
+import GenericFailMessage from "../../genericFailMessage/GenericFailMessage";
+import {TranslationsContext} from "../../../providers/TranslationProvider";
 
 interface Props {
     movies: MovieCollection | null;
@@ -19,6 +20,7 @@ const Movies = ({movies}: Props) => {
                 display: "grid"
             }
         }),
+        translations = useContext(TranslationsContext),
         amountOfMovies: number = movies !== null ? Object.keys(movies!).length : -1;
 
     let totalIndex = 0;
@@ -34,7 +36,7 @@ const Movies = ({movies}: Props) => {
                     ))}
                 </div>
             }
-            {(amountOfMovies === 0) && <NoMovieResults/>}
+            {(amountOfMovies === 0) && <GenericFailMessage message={translations.getMessage("noMoviesFound")}/>}
         </React.Fragment>
     );
 };

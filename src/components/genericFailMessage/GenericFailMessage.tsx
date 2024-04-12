@@ -1,13 +1,16 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {StyleSheet, css} from 'aphrodite';
-import {TranslationsContext} from "../../providers/TranslationProvider";
+import React, {useEffect, useState} from 'react';
+import {css, StyleSheet} from 'aphrodite';
 
-const NoMovieResults: React.FC = () => {
+interface Props {
+    message: string;
+}
+
+const GenericFailMessage = ({message}: Props) => {
     const [isVisible, setIsVisible] = useState(false),
         styles = StyleSheet.create({
             container: {
                 padding: 5,
-                width: "max-content",
+                width: "auto",
                 maxWidth: "auto",
                 height: "max-content",
                 margin: "0 auto",
@@ -21,8 +24,7 @@ const NoMovieResults: React.FC = () => {
             message: {
                 margin: 0
             }
-        }),
-        translations = useContext(TranslationsContext);
+        });
 
     useEffect(() => {
         setIsVisible(true);
@@ -30,10 +32,10 @@ const NoMovieResults: React.FC = () => {
 
     return (
         <div className={css(styles.container, isVisible && styles.visible)}>
-            <h4 className={css(styles.message)}>{translations.getMessage("noMoviesFound")}<span role="img" aria-label="sad face">&#128542;</span></h4>
+            <h4 className={css(styles.message)}>{message}<span role="img" aria-label="sad face">&#128542;</span></h4>
         </div>
     );
 };
 
 
-export default NoMovieResults;
+export default GenericFailMessage;
