@@ -79,7 +79,7 @@ const SearchMoviesForm: React.FC<Props> = ({onSearch}) => {
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder={translations.getMessage("enterCharacters")}
                     className={css(styles.input)}
-                    pattern="^\S.{1,}$"
+                    pattern="^\S.{2,}$"
                     title={translations.getMessage("enterCharactersWarning")}
                     aria-label={translations.getMessage("searchMoviesByTitle")}
                     required

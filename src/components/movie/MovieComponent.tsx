@@ -1,7 +1,7 @@
+import React, {useState, useContext} from 'react';
 import MoviePoster from "../moviePoster/MoviePoster";
-import React, {useContext} from "react";
 import Movie from "../../models/movie/Movie";
-import {css, StyleSheet} from "aphrodite";
+import {StyleSheet, css} from "aphrodite";
 import {ThemeContext} from "../../providers/ThemeProvider";
 import {TranslationsContext} from "../../providers/TranslationProvider";
 
@@ -9,10 +9,13 @@ const IMDB_URL: string = "https://www.imdb.com/title";
 
 interface Props {
     movie: Movie;
+    delay: number;
 }
 
-const MovieComponent = ({movie}: Props) => {
+const MovieComponent = ({movie, delay}: Props) => {
     const {theme} = useContext(ThemeContext),
+        translations = useContext(TranslationsContext),
+        [isVisible, setIsVisible] = useState(false),
         styles = StyleSheet.create({
             container: {
                 backgroundColor: theme.movie.background,
@@ -24,27 +27,25 @@ const MovieComponent = ({movie}: Props) => {
                 justifyContent: "center",
                 textAlign: "center",
                 boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-                transition: "background-color 0.3s, color 0.3s",
                 cursor: "pointer",
                 ":hover": {
                     backgroundColor: theme.movie.backgroundHover,
                 },
+                opacity: isVisible ? 1 : 0,
+                transition: "opacity 0.5s ease"
             },
             title: {
                 margin: 0,
             },
             year: {
                 margin: "5px 0"
-            },
-            hiddenLabel: {
-                position: "absolute",
-                left: "-9999px",
-                width: "1px",
-                height: "1px",
-                overflow: "hidden"
             }
-        }),
-        translations = useContext(TranslationsContext);
+        });
+
+    //TODO investigate why Aphrodite/React is ignoring the opacity change from the keyframe animation to avoid using this.
+    setTimeout(() => {
+        setIsVisible(true);
+    }, delay);
 
     const openInIMDB = (): void => {
         window.open(`${IMDB_URL}/${movie.id}`, "_blank");
@@ -59,7 +60,7 @@ const MovieComponent = ({movie}: Props) => {
             <h4 className={css(styles.title)}>{movie.title}</h4>
             <MoviePoster movieTitle={movie.title} moviePoster={movie.posterURL}/>
             <h5 className={css(styles.year)}>{movie.year}</h5>
-            <span className={css(styles.hiddenLabel)}>{translations.getMessage("openInIMDB")}</span>
+            <span>{translations.getMessage("openInIMDB")}</span>
         </div>
     );
 };
